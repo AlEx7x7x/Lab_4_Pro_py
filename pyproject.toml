@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "domain-app"
+version = "1.0.0"
+description = "Lab 4: typed object model of an online shop (variant 3)"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "mypy>=1.10",
+    "pytest>=8.0",
+]
+
+[project.scripts]
+shop-demo = "domain_app.main:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+warn_unused_ignores = true
+warn_return_any = true
+mypy_path = "src"
+# the file with intentional errors is checked only when passed explicitly
+exclude = ["experiments/type_errors_demo\\.py"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
